@@ -16,18 +16,20 @@ const getDataFromApi = () => {
       for (let i = 0; i < data.length; i++) {
         const show = data[i];
         shows.push(show);
+        // paintShows();
       }
-      // paintShows();
     });
 };
-//console.log(shows);
 
 //Favorites
 
 const handleSetFavorite = (event) => {
   event.currentTarget.classList.add('selected');
-  favorites.push(shows[event.currentTarget.dataset.index]);
-  paintFavorites();
+  const newFavorite = shows[event.currentTarget.dataset.index];
+  if (!favorites.includes(newFavorite)) {
+    favorites.push(newFavorite);
+    paintFavorites();
+  }
 };
 
 const favoritesItems = document.querySelector('.js-favorites-items');
@@ -46,7 +48,7 @@ const paintFavorites = () => {
     codeHTML += `</article>`;
     codeHTML += `</li>`;
   }
-  const favoritesItems = document.querySelector('.js-favorites-items');
+  // const favoritesItems = document.querySelector('.js-favorites-items'); la tengo declarada en la línea 54, porque existe en HTML. So no existiera, tendría que declararla dentro de paintShows.
   favoritesItems.innerHTML = codeHTML;
 };
 
@@ -68,7 +70,7 @@ const paintShows = () => {
     codeHTML += `</article>`;
     codeHTML += `</li>`;
   }
-  const showsItems = document.querySelector('.js-shows-list');
+  // const showsItems = document.querySelector('.js-shows-list'); la tengo declarada en la línea 54, porque existe en HTML. So no existiera, tendría que declararla dentro de paintShows.
   showsItems.innerHTML = codeHTML;
   // console.log(showsItems);
   //listen events

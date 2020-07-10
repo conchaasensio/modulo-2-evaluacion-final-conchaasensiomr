@@ -16,3 +16,9 @@
   height: 400px;
   background-color: violet;
 }
+
+.main__favorites--list {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
