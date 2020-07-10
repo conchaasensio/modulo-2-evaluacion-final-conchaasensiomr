@@ -7,18 +7,17 @@ const showsSearchButton = document.querySelector('.js-search-button');
 let shows = [];
 
 const getDataFromApi = () => {
-  fetch(`http://api.tvmaze.com/search/shows?q=girls`)
+  return fetch(`http://api.tvmaze.com/search/shows?q=girls`)
     .then((response) => response.json())
     .then((data) => {
       for (let i = 0; i < data.length; i++) {
         const show = data[i];
         shows.push(show);
       }
-      paintShows();
-      console.log(shows);
+      // paintShows();
+      // console.log(shows);
     });
 };
-getDataFromApi();
 //console.log(shows);
 
 //catalog
@@ -42,12 +41,10 @@ const paintShows = () => {
   // console.log(showsItems);
 };
 
-getDataFromApi();
-
 // events
 
 const handleshowsSearchClick = () => {
-  console.log('me han clickado');
+  getDataFromApi().then(() => paintShows());
 };
 
 showsSearchButton.addEventListener('click', handleshowsSearchClick);
