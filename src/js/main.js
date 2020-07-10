@@ -48,12 +48,10 @@ function paintFavorite(favorite, index) {
     favorite.show.image !== null
       ? favorite.show.image.medium
       : 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
-  let codeHTML = `<li class="main__favorites--item js-favorites-items" data-index="${index}">`;
-  codeHTML += `<article>`;
+  let codeHTML = `<article class="main__favorites--item js-favorites-items" data-index="${index}">`;
   codeHTML += `<img src="${imageUrl}" alt="" />`; //evaluar condición de que si tiene contenido y si es null, ponga la url por defecto (ternario).
   codeHTML += `<p class="main__list--title js-favorites-name">${favorite.show.name}</p>`;
   codeHTML += `</article>`;
-  codeHTML += `</li>`;
   favoritesItems.innerHTML += codeHTML;
 }
 
@@ -68,12 +66,10 @@ const paintShows = () => {
       show.show.image !== null
         ? show.show.image.medium
         : 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
-    codeHTML += `<li class="main__list--item js-shows-items" data-index="${index}">`;
-    codeHTML += `<article>`;
+    codeHTML += `<article class="main__list--item js-shows-items" data-index="${index}">`;
     codeHTML += `<img src="${imageUrl}" alt="" />`; //evaluar condición de que si tiene contenido y si es null, ponga la url por defecto (ternario).
     codeHTML += `<p class="main__list--name js-list-name">${show.show.name}</p>`;
     codeHTML += `</article>`;
-    codeHTML += `</li>`;
   }
   // const showsItems = document.querySelector('.js-shows-list'); la tengo declarada en la línea 54, porque existe en HTML. So no existiera, tendría que declararla dentro de paintShows.
   showsItems.innerHTML = codeHTML;
