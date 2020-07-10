@@ -37,20 +37,24 @@ const paintFavorites = () => {
   favoritesItems.innerHTML = '';
   for (let index = 0; index < favorites.length; index++) {
     const favorite = favorites[index];
-    let imageUrl =
-      favorite.show.image !== null
-        ? favorite.show.image.medium
-        : 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
-    let codeHTML = `<li class="main__favorites--item js-favorites-items" data-index="${index}">`;
-    codeHTML += `<article>`;
-    codeHTML += `<img src="${imageUrl}" alt="" />`; //evaluar condición de que si tiene contenido y si es null, ponga la url por defecto (ternario).
-    codeHTML += `<p class="main__list--title js-favorites-name">${favorite.show.name}</p>`;
-    codeHTML += `</article>`;
-    codeHTML += `</li>`;
-    favoritesItems.innerHTML += codeHTML;
+    paintFavorite(favorite, index);
   }
   // const favoritesItems = document.querySelector('.js-favorites-items'); la tengo declarada en la línea 54, porque existe en HTML. So no existiera, tendría que declararla dentro de paintShows.
 };
+//Esto lo hacemos porque queremos no pintar todos los favoritos cuando añadimos uno, sino que sólo queremos pintar el último favorito. Esto sustituirá a paintFavorites.
+function paintFavorite(favorite, index) {
+  let imageUrl =
+    favorite.show.image !== null
+      ? favorite.show.image.medium
+      : 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
+  let codeHTML = `<li class="main__favorites--item js-favorites-items" data-index="${index}">`;
+  codeHTML += `<article>`;
+  codeHTML += `<img src="${imageUrl}" alt="" />`; //evaluar condición de que si tiene contenido y si es null, ponga la url por defecto (ternario).
+  codeHTML += `<p class="main__list--title js-favorites-name">${favorite.show.name}</p>`;
+  codeHTML += `</article>`;
+  codeHTML += `</li>`;
+  favoritesItems.innerHTML += codeHTML;
+}
 
 //catalog
 
