@@ -1,4 +1,7 @@
 .main__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
   &--item {
     border: 1px solid pink;
     width: 300px;
