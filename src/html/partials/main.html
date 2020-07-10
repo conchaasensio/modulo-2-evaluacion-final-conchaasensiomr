@@ -1,13 +1,29 @@
 <main class="main">
-  <section class="main__browser"></section>
-  <input type="text" class="main__browser--text js-search-show" />
-  <button class="main__browser--button js-search-button">Buscar</button>
-  <ul class="main__list">
-    <li>
-      <article class="main__list--item js-shows-items">
-        <img src="" alt="" />
-        <p class="main__list--title">Nombre de la serie</p>
-      </article>
-    </li>
-  </ul>
+  <section class="main__browser">
+    <input
+      type="text"
+      class="main__browser--text js-search-show"
+      value="girls"
+    />
+    <button class="main__browser--button js-search-button">Buscar</button>
+    <ul class="main__list js-shows-list">
+      <!-- <li class="main__list--item js-shows-items">
+        <article>
+          <img src="" alt="" />
+          <p class="main__list--name">Nombre de la serie</p>
+        </article>
+      </li> -->
+    </ul>
+  </section>
+  <section class="main__favorites js-favorites">
+    <h2 class="main__favorites--title">Mis series favoritas</h2>
+    <ul class="main__favorites--list">
+      <li>
+        <article class="main__favorites--item js-favorites-items">
+          <img src="" alt="" />
+          <p class="main__favorites--name">Nombre de la serie</p>
+        </article>
+      </li>
+    </ul>
+  </section>
 </main>

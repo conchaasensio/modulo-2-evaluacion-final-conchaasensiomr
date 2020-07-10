@@ -1,11 +1,15 @@
-.main {
-  border: 1px solid red;
-  &main__list {
-    &--item {
-      border: 1px solid pink;
-      width: 300px;
-      height: 400px;
-      background-color: pink;
-    }
+.main__list {
+  &--item {
+    border: 1px solid pink;
+    width: 300px;
+    height: 400px;
+    background-color: pink;
   }
+}
+
+.selected {
+  border: 1px solid pink;
+  width: 300px;
+  height: 400px;
+  background-color: violet;
 }
