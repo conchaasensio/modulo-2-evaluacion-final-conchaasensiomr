@@ -1,13 +1,14 @@
 'use strict';
 
 const showsSearchButton = document.querySelector('.js-search-button');
+let showNameInput = document.querySelector('.js-search-show');
 
 //Obtener los datos de la API
 
 let shows = [];
 
 const getDataFromApi = () => {
-  return fetch(`http://api.tvmaze.com/search/shows?q=girls`)
+  return fetch(`http://api.tvmaze.com/search/shows?q=${showNameInput.value}`)
     .then((response) => response.json())
     .then((data) => {
       for (let i = 0; i < data.length; i++) {
