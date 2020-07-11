@@ -38,8 +38,11 @@ const handleSetFavorite = (event) => {
 // Eliminar favorito de la lista
 
 const handleRemoveFavorite = (event) => {
-  const index = event.currentTarget.dataset.index;
-  console.log(index);
+  const id = parseInt(event.currentTarget.id);
+  const index = favorites.findIndex((favorite) => favorite.show.id === id);
+  favorites.splice(index, 1);
+  updateLocalStorage();
+  event.currentTarget.remove();
 };
 
 const favoritesItems = document.querySelector('.js-favorites-items');
@@ -61,6 +64,7 @@ function paintFavorite(favorite, index) {
   let article = document.createElement('article');
   article.classList.add('main__favorites--item');
   article.dataset.index = index;
+  article.id = favorite.show.id;
   div.appendChild(article);
   article.addEventListener('click', handleRemoveFavorite);
   let imageShow = document.createElement('img');
