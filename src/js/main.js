@@ -49,11 +49,24 @@ function paintFavorite(favorite, index) {
     favorite.show.image !== null
       ? favorite.show.image.medium
       : 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
-  let codeHTML = `<article class="main__favorites--item js-favorites-items" data-index="${index}">`;
-  codeHTML += `<img src="${imageUrl}" alt="" />`; //evaluar condición de que si tiene contenido y si es null, ponga la url por defecto (ternario).
-  codeHTML += `<p class="main__list--title js-favorites-name">${favorite.show.name}</p>`;
-  codeHTML += `</article>`;
-  favoritesItems.innerHTML += codeHTML;
+  let div = document.querySelector('.js-favorites-items');
+  let article = document.createElement('article');
+  article.classList.add('main__favorites--item');
+  article.dataset.index = index;
+  div.appendChild(article);
+  let imageShow = document.createElement('img');
+  imageShow.src = imageUrl;
+  article.appendChild(imageShow);
+  let showName = document.createElement('h3');
+  showName.classList.add('main__list--title', 'js-favorites-name');
+  showName.appendChild(document.createTextNode(favorite.show.name));
+  article.appendChild(showName);
+
+  // let codeHTML = `<article class="main__favorites--item js-favorites-items" data-index="${index}">`;
+  // codeHTML += `<img src="${imageUrl}" alt="" />`; //evaluar condición de que si tiene contenido y si es null, ponga la url por defecto (ternario).
+  // codeHTML += `<p class="main__list--title js-favorites-name">${favorite.show.name}</p>`;
+  // codeHTML += `</article>`;
+  // favoritesItems.innerHTML += codeHTML;
 }
 
 //catalog
