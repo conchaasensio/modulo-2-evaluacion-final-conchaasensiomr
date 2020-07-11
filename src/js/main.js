@@ -23,6 +23,7 @@ const getDataFromApi = () => {
 
 //Favorites
 
+// Añadir favorito a la lista
 const handleSetFavorite = (event) => {
   event.currentTarget.classList.add('selected');
   const index = event.currentTarget.dataset.index;
@@ -32,6 +33,13 @@ const handleSetFavorite = (event) => {
     paintFavorite(newFavorite, index);
   }
   updateLocalStorage();
+};
+
+// Eliminar favorito de la lista
+
+const handleRemoveFavorite = (event) => {
+  const index = event.currentTarget.dataset.index;
+  console.log(index);
 };
 
 const favoritesItems = document.querySelector('.js-favorites-items');
@@ -54,6 +62,7 @@ function paintFavorite(favorite, index) {
   article.classList.add('main__favorites--item');
   article.dataset.index = index;
   div.appendChild(article);
+  article.addEventListener('click', handleRemoveFavorite);
   let imageShow = document.createElement('img');
   imageShow.src = imageUrl;
   article.appendChild(imageShow);
