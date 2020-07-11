@@ -35,15 +35,15 @@ const handleSetFavorite = (event) => {
 };
 
 const favoritesItems = document.querySelector('.js-favorites-items');
-// const paintFavorites = () => {
-//   favoritesItems.innerHTML = '';
-//   for (let index = 0; index < favorites.length; index++) {
-//     const favorite = favorites[index];
-//     paintFavorite(favorite, index);
-//   }
-//   // const favoritesItems = document.querySelector('.js-favorites-items'); la tengo declarada fuera, porque existe en HTML. So no existiera, tendría que declararla dentro de paintShows.
-// };
-//Esto lo hacemos porque queremos no pintar todos los favoritos cuando añadimos uno, sino que sólo queremos pintar el último favorito. Esto sustituirá a paintFavorites.
+const paintFavorites = () => {
+  favoritesItems.innerHTML = '';
+  for (let index = 0; index < favorites.length; index++) {
+    const favorite = favorites[index];
+    paintFavorite(favorite, index);
+  }
+  // const favoritesItems = document.querySelector('.js-favorites-items'); la tengo declarada fuera, porque existe en HTML. So no existiera, tendría que declararla dentro de paintShows.
+};
+// Esto lo hacemos porque queremos no pintar todos los favoritos cuando añadimos uno, sino que sólo queremos pintar el último favorito. Esto sustituirá a paintFavorites.
 function paintFavorite(favorite, index) {
   let imageUrl =
     favorite.show.image !== null
@@ -94,9 +94,12 @@ handleshowsSearchClick();
 // Local storage
 
 const updateLocalStorage = () => {
-  localStorage.setItem('favorites', JSON.stringify('favorites'));
+  localStorage.setItem('favorites', JSON.stringify(favorites));
 };
 
 const getFromLocalStorage = () => {
-  const data = JSON.parse(localStorage.getItem('favorites'));
+  favorites = JSON.parse(localStorage.getItem('favorites'));
+  paintFavorites();
 };
+
+getFromLocalStorage();
