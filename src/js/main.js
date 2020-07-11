@@ -31,6 +31,7 @@ const handleSetFavorite = (event) => {
     favorites.push(newFavorite);
     paintFavorite(newFavorite, index);
   }
+  updateLocalStorage();
 };
 
 const favoritesItems = document.querySelector('.js-favorites-items');
@@ -89,3 +90,13 @@ const handleshowsSearchClick = () => {
 
 showsSearchButton.addEventListener('click', handleshowsSearchClick);
 handleshowsSearchClick();
+
+// Local storage
+
+const updateLocalStorage = () => {
+  localStorage.setItem('favorites', JSON.stringify('favorites'));
+};
+
+const getFromLocalStorage = () => {
+  const data = JSON.parse(localStorage.getItem('favorites'));
+};
