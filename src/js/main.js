@@ -124,7 +124,7 @@ const updateLocalStorage = () => {
 };
 
 const getFromLocalStorage = () => {
-  favorites = JSON.parse(localStorage.getItem('favorites'));
+  favorites = JSON.parse(localStorage.getItem('favorites')) ?? [];
   paintFavorites();
 };
 
