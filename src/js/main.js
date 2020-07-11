@@ -41,8 +41,8 @@ const handleRemoveFavorite = (event) => {
   const id = parseInt(event.currentTarget.id);
   const index = favorites.findIndex((favorite) => favorite.show.id === id);
   favorites.splice(index, 1);
-  updateLocalStorage();
   event.currentTarget.remove();
+  updateLocalStorage();
 };
 
 const favoritesItems = document.querySelector('.js-favorites-items');
@@ -86,21 +86,39 @@ function paintFavorite(favorite, index) {
 
 const showsItems = document.querySelector('.js-shows-list');
 const paintShows = () => {
-  let codeHTML = '';
+  // let codeHTML = '';
   for (let index = 0; index < shows.length; index++) {
     const show = shows[index];
     let imageUrl =
       show.show.image !== null
         ? show.show.image.medium
         : 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
-    codeHTML += `<article class="main__list--item js-shows-items" data-index="${index}">`;
-    codeHTML += `<img src="${imageUrl}" alt="" />`; //evaluar condición de que si tiene contenido y si es null, ponga la url por defecto (ternario).
-    codeHTML += `<p class="main__list--name js-list-name">${show.show.name}</p>`;
-    codeHTML += `</article>`;
+    let section = document.querySelector('.js-shows-list');
+
+    let article = document.createElement('article');
+    article.classList.add('main__list--item', 'js-shows-items');
+    article.dataset.index = index;
+    article.id = show.show.id;
+    section.appendChild(article);
+
+    let imageShow = document.createElement('img');
+    imageShow.src = imageUrl;
+    article.appendChild(imageShow);
+
+    let showName = document.createElement('h3');
+    showName.classList.add('main__list--name', 'js-list-name');
+    showName.appendChild(document.createTextNode(show.show.name));
+    article.appendChild(showName);
+
+    // codeHTML += `<article class="main__list--item js-shows-items" data-index="${index}">`;
+    // codeHTML += `<img src="${imageUrl}" alt="" />`; //evaluar condición de que si tiene contenido y si es null, ponga la url por defecto (ternario).
+    // codeHTML += `<p class="main__list--name js-list-name">${show.show.name}</p>`;
+    // codeHTML += `</article>`;
   }
   // const showsItems = document.querySelector('.js-shows-list'); la tengo declarada en la línea 54, porque existe en HTML. So no existiera, tendría que declararla dentro de paintShows.
-  showsItems.innerHTML = codeHTML;
+  // showsItems.innerHTML = codeHTML;
   // console.log(showsItems);
+
   //listen events
   const showsFavorites = document.querySelectorAll('.js-shows-items');
   for (const showsFavorite of showsFavorites) {
