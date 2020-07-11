@@ -102,4 +102,15 @@ const getFromLocalStorage = () => {
   paintFavorites();
 };
 
+// Reset;
+
+const buttonReset = document.querySelector('.js-reset-button');
+const resetFavorites = () => {
+  favorites = [];
+  updateLocalStorage();
+  paintFavorites();
+};
+
+buttonReset.addEventListener('click', resetFavorites);
+
 getFromLocalStorage();
