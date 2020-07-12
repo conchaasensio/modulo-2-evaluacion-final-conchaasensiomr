@@ -31,6 +31,9 @@ function handleSetFavorite(event) {
   if (!favorites.includes(newFavorite)) {
     favorites.push(newFavorite);
     paintFavorite(newFavorite, index);
+  } else {
+    event.currentTarget.classList.remove('selected');
+    handleRemoveFavorite(event);
   }
   updateLocalStorage();
 }
@@ -41,7 +44,7 @@ function handleRemoveFavorite(event) {
   const id = parseInt(event.currentTarget.id);
   const index = favorites.findIndex((favorite) => favorite.show.id === id);
   favorites.splice(index, 1);
-  event.currentTarget.remove();
+  paintFavorites();
   updateLocalStorage();
   paintShows();
 }
