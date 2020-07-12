@@ -8,7 +8,7 @@ let showNameInput = document.querySelector('.js-search-show');
 let shows = [];
 let favorites = [];
 
-const getDataFromApi = () => {
+function getDataFromApi() {
   shows = [];
   return fetch(`http://api.tvmaze.com/search/shows?q=${showNameInput.value}`)
     .then((response) => response.json())
@@ -19,12 +19,12 @@ const getDataFromApi = () => {
         // paintShows();
       }
     });
-};
+}
 
 //Favorites
 
 // Añadir favorito a la lista
-const handleSetFavorite = (event) => {
+function handleSetFavorite(event) {
   event.currentTarget.classList.add('selected');
   const index = event.currentTarget.dataset.index;
   const newFavorite = shows[index];
@@ -33,27 +33,27 @@ const handleSetFavorite = (event) => {
     paintFavorite(newFavorite, index);
   }
   updateLocalStorage();
-};
+}
 
 // Eliminar favorito de la lista
 
-const handleRemoveFavorite = (event) => {
+function handleRemoveFavorite(event) {
   const id = parseInt(event.currentTarget.id);
   const index = favorites.findIndex((favorite) => favorite.show.id === id);
   favorites.splice(index, 1);
   event.currentTarget.remove();
   updateLocalStorage();
-};
+}
 
 const favoritesItems = document.querySelector('.js-favorites-items');
-const paintFavorites = () => {
+function paintFavorites() {
   favoritesItems.innerHTML = '';
   for (let index = 0; index < favorites.length; index++) {
     const favorite = favorites[index];
     paintFavorite(favorite, index);
   }
   // const favoritesItems = document.querySelector('.js-favorites-items'); la tengo declarada fuera, porque existe en HTML. So no existiera, tendría que declararla dentro de paintShows.
-};
+}
 // Esto lo hacemos porque queremos no pintar todos los favoritos cuando añadimos uno, sino que sólo queremos pintar el último favorito. Esto sustituirá a paintFavorites.
 function paintFavorite(favorite, index) {
   let imageUrl =
@@ -84,7 +84,7 @@ function paintFavorite(favorite, index) {
 
 //catalog
 const showsItems = document.querySelector('.js-shows-list');
-const paintShows = () => {
+function paintShows() {
   // let codeHTML = '';
   let section = document.querySelector('.js-shows-list');
   section.innerHTML = '';
@@ -128,7 +128,7 @@ const paintShows = () => {
   for (const showsItem of showsItems) {
     showsItem.addEventListener('click', handleSetFavorite);
   }
-};
+}
 function isFavorite(show) {
   return (
     favorites.find((favorite) => favorite.show.id === show.show.id) !==
@@ -137,31 +137,31 @@ function isFavorite(show) {
 }
 // events
 
-const handleshowsSearchClick = () => {
+function handleshowsSearchClick() {
   getDataFromApi().then(() => paintShows());
-};
+}
 
 showsSearchButton.addEventListener('click', handleshowsSearchClick);
 
 // Local storage
 
-const updateLocalStorage = () => {
+function updateLocalStorage() {
   localStorage.setItem('favorites', JSON.stringify(favorites));
-};
+}
 
-const getFromLocalStorage = () => {
+function getFromLocalStorage() {
   favorites = JSON.parse(localStorage.getItem('favorites')) ?? [];
   paintFavorites();
-};
+}
 
 // Reset;
 
 const buttonReset = document.querySelector('.js-reset-button');
-const resetFavorites = () => {
+function resetFavorites() {
   favorites = [];
   updateLocalStorage();
   paintFavorites();
-};
+}
 
 buttonReset.addEventListener('click', resetFavorites);
 
