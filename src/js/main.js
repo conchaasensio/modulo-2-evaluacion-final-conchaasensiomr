@@ -43,6 +43,7 @@ function handleRemoveFavorite(event) {
   favorites.splice(index, 1);
   event.currentTarget.remove();
   updateLocalStorage();
+  paintShows();
 }
 
 const favoritesItems = document.querySelector('.js-favorites-items');
@@ -161,6 +162,7 @@ function resetFavorites() {
   favorites = [];
   updateLocalStorage();
   paintFavorites();
+  paintShows();
 }
 
 buttonReset.addEventListener('click', resetFavorites);
