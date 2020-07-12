@@ -3,11 +3,17 @@
 const showsSearchButton = document.querySelector('.js-search-button');
 let showNameInput = document.querySelector('.js-search-show');
 
-//Obtener los datos de la API
-
+// Arrays
 let shows = [];
 let favorites = [];
 
+// Función manejadora del evento que escucha el click al buscar y evento que se produce al hacer click.
+function handleshowsSearchClick() {
+  getDataFromApi().then(() => paintShows());
+}
+showsSearchButton.addEventListener('click', handleshowsSearchClick);
+
+//Obtener los datos de la API
 function getDataFromApi() {
   event.preventDefault();
   shows = [];
@@ -22,81 +28,13 @@ function getDataFromApi() {
     });
 }
 
-//Favorites
+// ***** CATÁLOGO DE SERIES *****
 
-// Añadir favorito a la lista
-function handleSetFavorite(event) {
-  event.currentTarget.classList.add('selected');
-  const index = event.currentTarget.dataset.index;
-  const newFavorite = shows[index];
-  if (!isFavorite(newFavorite)) {
-    favorites.push(newFavorite);
-    paintFavorite(newFavorite, index);
-  } else {
-    event.currentTarget.classList.remove('selected');
-    handleRemoveFavorite(event);
-  }
-  updateLocalStorage();
-}
-
-// Eliminar favorito de la lista
-
-function handleRemoveFavorite(event) {
-  const id = parseInt(event.currentTarget.id);
-  const index = favorites.findIndex((favorite) => favorite.show.id === id);
-  favorites.splice(index, 1);
-  paintFavorites();
-  updateLocalStorage();
-  paintShows();
-}
-
-const favoritesItems = document.querySelector('.js-favorites-items');
-function paintFavorites() {
-  favoritesItems.innerHTML = '';
-  for (let index = 0; index < favorites.length; index++) {
-    const favorite = favorites[index];
-    paintFavorite(favorite, index);
-  }
-  // const favoritesItems = document.querySelector('.js-favorites-items'); la tengo declarada fuera, porque existe en HTML. So no existiera, tendría que declararla dentro de paintShows.
-}
-// Esto lo hacemos porque queremos no pintar todos los favoritos cuando añadimos uno, sino que sólo queremos pintar el último favorito. Esto sustituirá a paintFavorites.
-function paintFavorite(favorite, index) {
-  let imageUrl =
-    favorite.show.image !== null
-      ? favorite.show.image.medium
-      : 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
-  let li = document.querySelector('.js-favorites-items');
-  let article = document.createElement('article');
-  article.classList.add('main__favorites--item');
-  article.dataset.index = index;
-  article.id = favorite.show.id;
-  li.appendChild(article);
-  let imageShow = document.createElement('img');
-  imageShow.src = imageUrl;
-  article.appendChild(imageShow);
-  let showName = document.createElement('h3');
-  showName.classList.add('main__list--title', 'js-favorites-name');
-  showName.appendChild(document.createTextNode(favorite.show.name));
-  article.appendChild(showName);
-  let removeButton = document.createElement('button');
-  removeButton.classList.add('remove__button', 'js-remove-button');
-  removeButton.innerHTML = 'X';
-  article.appendChild(removeButton);
-  removeButton.addEventListener('click', handleRemoveFavorite);
-
-  // let codeHTML = `<article class="main__favorites--item js-favorites-items" data-index="${index}">`;
-  // codeHTML += `<img src="${imageUrl}" alt="" />`; //evaluar condición de que si tiene contenido y si es null, ponga la url por defecto (ternario).
-  // codeHTML += `<p class="main__list--title js-favorites-name">${favorite.show.name}</p>`;
-  // codeHTML += `</article>`;
-  // favoritesItems.innerHTML += codeHTML;
-}
-
-//catalog
+//Pintamos el catálogo
 const showsItems = document.querySelector('.js-shows-list');
 const msgNoResults = document.querySelector('.msg-no-results');
 function paintShows() {
-  // let codeHTML = '';
-  let ul = document.querySelector('.js-shows-list');
+  let ul = showsItems;
   ul.innerHTML = '';
   if (shows.length > 0) {
     msgNoResults.classList.add('msg-no-results--hidden');
@@ -134,19 +72,85 @@ function paintShows() {
     msgNoResults.classList.remove('msg-no-results--hidden');
   }
 }
+
 function isFavorite(show) {
   return (
     favorites.find((favorite) => favorite.show.id === show.show.id) !==
     undefined
   );
 }
-// events
 
-function handleshowsSearchClick() {
-  getDataFromApi().then(() => paintShows());
+// ***** FAVORITES *****
+
+// Pintamos los favoritos
+
+const favoritesItems = document.querySelector('.js-favorites-items'); //la tengo declarada fuera, porque existe en HTML. So no existiera, tendría que declararla dentro de paintShows.
+function paintFavorites() {
+  favoritesItems.innerHTML = ''; //Limpiamos los favoritos antes de pintarlos, para que no se repitan.
+  for (let index = 0; index < favorites.length; index++) {
+    const favorite = favorites[index];
+    paintFavorite(favorite, index);
+  }
+}
+// Esto lo hacemos porque queremos no pintar todos los favoritos cuando añadimos uno, sino que sólo queremos pintar el último favorito. Esto sustituirá a paintFavorites.
+function paintFavorite(favorite, index) {
+  let imageUrl =
+    favorite.show.image !== null
+      ? favorite.show.image.medium
+      : 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
+
+  let li = document.querySelector('.js-favorites-items');
+
+  let article = document.createElement('article');
+  article.classList.add('main__favorites--item');
+  article.dataset.index = index;
+  article.id = favorite.show.id;
+  li.appendChild(article);
+
+  let imageShow = document.createElement('img');
+  imageShow.src = imageUrl;
+  article.appendChild(imageShow);
+
+  let showName = document.createElement('h3');
+  showName.classList.add('main__list--title', 'js-favorites-name');
+  showName.appendChild(document.createTextNode(favorite.show.name));
+  article.appendChild(showName);
+
+  let removeButton = document.createElement('button');
+  removeButton.classList.add('remove__button', 'js-remove-button');
+  removeButton.innerHTML = 'X';
+  article.appendChild(removeButton);
+  removeButton.addEventListener('click', handleRemoveFavorite);
 }
 
-showsSearchButton.addEventListener('click', handleshowsSearchClick);
+// Añadir favorito a la lista
+
+function handleSetFavorite(event) {
+  event.currentTarget.classList.add('selected');
+  const index = event.currentTarget.dataset.index;
+  const newFavorite = shows[index];
+  if (!isFavorite(newFavorite)) {
+    favorites.push(newFavorite);
+    paintFavorite(newFavorite, index);
+  } else {
+    event.currentTarget.classList.remove('selected');
+    handleRemoveFavorite(event);
+  }
+  updateLocalStorage();
+}
+
+// Eliminar favorito de la lista
+
+function handleRemoveFavorite(event) {
+  const id = parseInt(event.currentTarget.id);
+  const index = favorites.findIndex((favorite) => favorite.show.id === id);
+  favorites.splice(index, 1);
+  paintFavorites();
+  updateLocalStorage();
+  paintShows();
+}
+
+// events
 
 // Local storage
 
