@@ -3,8 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Adalab Web Starter Kit</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <title>Ejercicio de evaluación final</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/css/main.css" />
     <link rel="icon" href="./assets/images/favicon.png" />
   </head>
@@ -12,33 +15,45 @@
   <body>
     <div class="page">
       <header class="page__header">
-        <img src="./assets/images/logo-adalab.png" alt="Adalab">
-        <h1>Bienvenidos a Adalab</h1>
+        <h1>Buscador se series</h1>
       </header>
 
       <main class="page__main">
-        <h2>Este es el starter kit de Adalab</h2>
-        <p>Lo usamos para aprender:</p>
-        <ul class="main__list">
-          <li>Sass</li>
-          <li>HTML partials</li>
-          <li>Gulp</li>
-          <li>y muchas cosas más</li>
-        </ul>
+        <section class="page__left--section">
+          <form action="" method="post" id="form" class="search-form">
+            <input type="text" class="search-form__show js-search-show" />
+            <button
+              type="submit"
+              id="btn-search"
+              class="search-form__button js-search-button"
+            >
+              Buscar
+            </button>
+          </form>
+          <h2 class="main__favorites--title">Mis series favoritas</h2>
+          <ul class="main__favorites js-favorites-list">
+            <!-- Esto se rellena con el main.js paintFavorite -->
+          </ul>
+          <button class="reset__button js-reset-button">Borrar</button>
+        </section>
+        <section class="page__right--section">
+          <div class="msg-no-results msg-no-results--hidden">
+            <p class="msg-no-results__text">No se han encontrato resultados</p>
+          </div>
+          <ul class="main__list js-shows-list">
+            <!-- Esto se rellena con el main.js paintShows -->
+          </ul>
+        </section>
       </main>
 
-      <a class="link__adalab" href="https://adalab.es" target="_blank">Adalab</a>
+      <!-- <footer class="footer">
+   <small>
+     &copy; Todos los derechos reservados
+     <a class="link__adalab" href="https://adalab.es" target="_blank">Adalab</a>
 
-      <a class="link__github" href="https://github.com" target="_blank">GitHub</a>
-
-      <footer class="page__footer">
-        <small>
-          &copy; Todos los derechos reservados
-          <a class="link__adalab" href="https://adalab.es" target="_blank">Adalab</a>
-
-        </small>
-      </footer>
-
+   </small>
+ </footer>
+ -->
     </div>
     <script src="./assets/js/main.js"></script>
   </body>
