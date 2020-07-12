@@ -27,10 +27,12 @@
   overflow: hidden;
   transition: all 0.25s ease-in-out;
   max-width: 100%;
+  border-radius: 10%;
 }
 
 .main__list--item img {
   max-width: 100%;
+  border-radius: 10%;
 }
 
 .main__list--name {
