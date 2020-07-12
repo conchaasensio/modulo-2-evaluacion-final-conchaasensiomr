@@ -17,32 +17,28 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 15px;
-}
-
-.main__list--item {
-  padding: 15px;
-  background-color: $color-backgroung-show;
-  text-align: center;
-  cursor: pointer;
-  overflow: hidden;
-  transition: all 0.25s ease-in-out;
-  max-width: 100%;
-  border-radius: 10%;
-}
-
-.main__list--item img {
-  max-width: 100%;
-  border-radius: 10%;
-}
-
-.main__list--name {
-  color: $color-show-name;
-  font-weight: bold;
-  padding: 8px 0;
-}
-
-.main__list--item:hover {
-  transform: scale(1.05);
+  &--item {
+    padding: 15px;
+    background-color: $color-backgroung-show;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.25s ease-in-out;
+    max-width: 100%;
+    border-radius: 10%;
+    &:hover {
+      transform: scale(1.05);
+    }
+    & img {
+      max-width: 100%;
+      border-radius: 10%;
+    }
+  }
+  &--name {
+    color: $color-show-name;
+    font-weight: bold;
+    padding: 8px 0;
+  }
 }
 
 .selected {
@@ -97,12 +93,12 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 8px;
-  // width: 25%;
 }
 
 .main__list--title {
   padding: 15px;
   font-weight: bold;
+  font-size: 1.2rem;
   color: $color-backgroung-show;
   flex: 1;
   overflow: hidden;
@@ -120,8 +116,8 @@
   font-weight: bold;
   font-size: 0.7rem;
   line-height: 0.7rem;
-  width: 15px;
-  height: 15px;
+  width: 25px;
+  height: 25px;
   padding: 0;
   cursor: pointer;
 }
