@@ -82,10 +82,9 @@ function isFavorite(show) {
   );
 }
 
-// ***** FAVORITES *****
+// ***** FAVORITOS *****
 
 // Pintamos los favoritos
-
 const favoritesItems = document.querySelector('.js-favorites-list'); //la tengo declarada fuera, porque existe en HTML. So no existiera, tendría que declararla dentro de paintShows.
 function paintFavorites() {
   favoritesItems.innerHTML = ''; //Limpiamos los favoritos antes de pintarlos, para que no se repitan.
@@ -131,7 +130,6 @@ function paintFavorite(favorite, index) {
 }
 
 // Añadir favorito a la lista
-
 function handleSetFavorite(event) {
   event.currentTarget.classList.add('selected');
   const index = event.currentTarget.dataset.index;
@@ -146,7 +144,6 @@ function handleSetFavorite(event) {
 }
 
 // Eliminar favorito de la lista
-
 function handleRemoveFavorite(event) {
   const id = parseInt(event.currentTarget.dataset.id);
   removeFavorite(id);
@@ -171,10 +168,7 @@ function removeFavorite(id) {
   }
 }
 
-// events
-
 // Local storage
-
 function updateLocalStorage() {
   localStorage.setItem('favorites', JSON.stringify(favorites));
 }
@@ -185,7 +179,6 @@ function getFromLocalStorage() {
 }
 
 // Reset;
-
 const buttonReset = document.querySelector('.js-reset-button');
 function resetFavorites() {
   favorites = [];
@@ -199,4 +192,5 @@ function resetFavorites() {
 
 buttonReset.addEventListener('click', resetFavorites);
 
+// Al arrancar la página
 getFromLocalStorage();
