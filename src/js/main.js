@@ -83,7 +83,6 @@ function paintFavorite(favorite, index) {
 }
 
 //catalog
-
 const showsItems = document.querySelector('.js-shows-list');
 const paintShows = () => {
   // let codeHTML = '';
@@ -99,6 +98,10 @@ const paintShows = () => {
     let article = document.createElement('article');
     article.classList.add('main__list--item', 'js-shows-items');
     article.dataset.index = index;
+    if (isFavorite(show)) {
+      article.classList.add('selected');
+    }
+
     article.id = show.show.id;
     section.appendChild(article);
 
@@ -121,12 +124,17 @@ const paintShows = () => {
   // console.log(showsItems);
 
   //listen events
-  const showsFavorites = document.querySelectorAll('.js-shows-items');
-  for (const showsFavorite of showsFavorites) {
-    showsFavorite.addEventListener('click', handleSetFavorite);
+  const showsItems = document.querySelectorAll('.js-shows-items');
+  for (const showsItem of showsItems) {
+    showsItem.addEventListener('click', handleSetFavorite);
   }
 };
-
+function isFavorite(show) {
+  return (
+    favorites.find((favorite) => favorite.show.id === show.show.id) !==
+    undefined
+  );
+}
 // events
 
 const handleshowsSearchClick = () => {
@@ -134,7 +142,6 @@ const handleshowsSearchClick = () => {
 };
 
 showsSearchButton.addEventListener('click', handleshowsSearchClick);
-handleshowsSearchClick();
 
 // Local storage
 
@@ -159,3 +166,4 @@ const resetFavorites = () => {
 buttonReset.addEventListener('click', resetFavorites);
 
 getFromLocalStorage();
+handleshowsSearchClick();
