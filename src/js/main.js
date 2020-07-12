@@ -84,7 +84,7 @@ function isFavorite(show) {
 
 // Pintamos los favoritos
 
-const favoritesItems = document.querySelector('.js-favorites-items'); //la tengo declarada fuera, porque existe en HTML. So no existiera, tendría que declararla dentro de paintShows.
+const favoritesItems = document.querySelector('.js-favorites-list'); //la tengo declarada fuera, porque existe en HTML. So no existiera, tendría que declararla dentro de paintShows.
 function paintFavorites() {
   favoritesItems.innerHTML = ''; //Limpiamos los favoritos antes de pintarlos, para que no se repitan.
   for (let index = 0; index < favorites.length; index++) {
