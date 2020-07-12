@@ -93,44 +93,49 @@ function paintFavorite(favorite, index) {
 
 //catalog
 const showsItems = document.querySelector('.js-shows-list');
-const msgNoResults = document.querySelector('msg-no-results');
+const msgNoResults = document.querySelector('.msg-no-results');
 function paintShows() {
   // let codeHTML = '';
   let ul = document.querySelector('.js-shows-list');
   ul.innerHTML = '';
-  for (let index = 0; index < shows.length; index++) {
-    const show = shows[index];
-    let imageUrl =
-      show.show.image !== null
-        ? show.show.image.medium
-        : 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
+  if (shows.length > 0) {
+    msgNoResults.classList.add('msg-no-results--hidden');
+    for (let index = 0; index < shows.length; index++) {
+      const show = shows[index];
+      let imageUrl =
+        show.show.image !== null
+          ? show.show.image.medium
+          : 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
-    let li = document.createElement('li');
-    ul.appendChild(li);
+      let li = document.createElement('li');
+      ul.appendChild(li);
 
-    let article = document.createElement('article');
-    article.classList.add('main__list--item', 'js-shows-items');
-    article.dataset.index = index;
-    if (isFavorite(show)) {
-      article.classList.add('selected');
+      let article = document.createElement('article');
+      article.classList.add('main__list--item', 'js-shows-items');
+      article.dataset.index = index;
+      if (isFavorite(show)) {
+        article.classList.add('selected');
+      }
+
+      article.id = show.show.id;
+      li.appendChild(article);
+
+      let imageShow = document.createElement('img');
+      imageShow.src = imageUrl;
+      article.appendChild(imageShow);
+
+      let showName = document.createElement('h3');
+      showName.classList.add('main__list--name', 'js-list-name');
+      showName.appendChild(document.createTextNode(show.show.name));
+      article.appendChild(showName);
     }
-
-    article.id = show.show.id;
-    li.appendChild(article);
-
-    let imageShow = document.createElement('img');
-    imageShow.src = imageUrl;
-    article.appendChild(imageShow);
-
-    let showName = document.createElement('h3');
-    showName.classList.add('main__list--name', 'js-list-name');
-    showName.appendChild(document.createTextNode(show.show.name));
-    article.appendChild(showName);
 
     // codeHTML += `<article class="main__list--item js-shows-items" data-index="${index}">`;
     // codeHTML += `<img src="${imageUrl}" alt="" />`; //evaluar condición de que si tiene contenido y si es null, ponga la url por defecto (ternario).
     // codeHTML += `<p class="main__list--name js-list-name">${show.show.name}</p>`;
     // codeHTML += `</article>`;
+  } else {
+    msgNoResults.classList.remove('msg-no-results--hidden');
   }
   // const showsItems = document.querySelector('.js-shows-list'); la tengo declarada en la línea 54, porque existe en HTML. So no existiera, tendría que declararla dentro de paintShows.
   // showsItems.innerHTML = codeHTML;

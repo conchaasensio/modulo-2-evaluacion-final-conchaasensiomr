@@ -126,3 +126,16 @@
   color: $color-light;
   background-color: $color-show-name;
 }
+
+.msg-no-results {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__text {
+    font-size: 1.5rem;
+  }
+  &--hidden {
+    display: none;
+  }
+}
