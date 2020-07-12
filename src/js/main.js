@@ -170,7 +170,11 @@ function resetFavorites() {
   favorites = [];
   updateLocalStorage();
   paintFavorites();
-  paintShows();
+  const showsItems = document.querySelectorAll('.js-shows-items');
+  for (const showsItem of showsItems) {
+    showsItem.classList.remove('selected');
+  }
+  // paintShows();
 }
 
 buttonReset.addEventListener('click', resetFavorites);
