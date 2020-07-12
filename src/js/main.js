@@ -29,7 +29,7 @@ function handleSetFavorite(event) {
   event.currentTarget.classList.add('selected');
   const index = event.currentTarget.dataset.index;
   const newFavorite = shows[index];
-  if (!favorites.includes(newFavorite)) {
+  if (!isFavorite(newFavorite)) {
     favorites.push(newFavorite);
     paintFavorite(newFavorite, index);
   } else {
