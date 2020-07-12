@@ -99,12 +99,16 @@ function paintFavorite(favorite, index) {
       ? favorite.show.image.medium
       : 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
-  let li = document.querySelector('.js-favorites-items');
+  let ul = document.querySelector('.js-favorites-list');
+  let li = document.createElement('li');
+  li.classList.add('main__favorites--list', 'js-favorites-items');
+  ul.appendChild(li);
+
+  li.id = favorite.show.id;
 
   let article = document.createElement('article');
   article.classList.add('main__favorites--item');
   article.dataset.index = index;
-  article.id = favorite.show.id;
   li.appendChild(article);
 
   let imageShow = document.createElement('img');
@@ -146,7 +150,14 @@ function handleRemoveFavorite(event) {
   const id = parseInt(event.currentTarget.id);
   const index = favorites.findIndex((favorite) => favorite.show.id === id);
   favorites.splice(index, 1);
-  paintFavorites();
+  const favoritesItems = document.querySelectorAll('.js-favorites-items');
+  for (const favoritesItem of favoritesItems) {
+    if (id === parseInt(favoritesItem.id)) {
+      favoritesItem.remove();
+    }
+  }
+
+  // paintFavorites();
   updateLocalStorage();
   const showsItems = document.querySelectorAll('.js-shows-items');
   for (const showsItem of showsItems) {
@@ -154,8 +165,6 @@ function handleRemoveFavorite(event) {
       showsItem.classList.remove('selected');
     }
   }
-
-  // paintShows();
 }
 
 // events
