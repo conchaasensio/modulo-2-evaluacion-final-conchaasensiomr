@@ -9,6 +9,7 @@ let shows = [];
 let favorites = [];
 
 function getDataFromApi() {
+  event.preventDefault();
   shows = [];
   return fetch(`http://api.tvmaze.com/search/shows?q=${showNameInput.value}`)
     .then((response) => response.json())
@@ -175,4 +176,3 @@ function resetFavorites() {
 buttonReset.addEventListener('click', resetFavorites);
 
 getFromLocalStorage();
-handleshowsSearchClick();
