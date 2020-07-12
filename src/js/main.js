@@ -123,7 +123,7 @@ function paintFavorite(favorite, index) {
   let removeButton = document.createElement('button');
   removeButton.classList.add('remove__button', 'js-remove-button');
   removeButton.innerHTML = 'X';
-  removeButton.id = favorite.show.id;
+  removeButton.dataset.id = favorite.show.id;
   article.appendChild(removeButton);
   removeButton.addEventListener('click', handleRemoveFavorite);
 }
@@ -138,8 +138,7 @@ function handleSetFavorite(event) {
     favorites.push(newFavorite);
     paintFavorite(newFavorite, index);
   } else {
-    event.currentTarget.classList.remove('selected');
-    handleRemoveFavorite(event);
+    removeFavorite(parseInt(event.currentTarget.id));
   }
   updateLocalStorage();
 }
@@ -147,9 +146,14 @@ function handleSetFavorite(event) {
 // Eliminar favorito de la lista
 
 function handleRemoveFavorite(event) {
-  const id = parseInt(event.currentTarget.id);
+  const id = parseInt(event.currentTarget.dataset.id);
+  removeFavorite(id);
+}
+
+function removeFavorite(id) {
   const index = favorites.findIndex((favorite) => favorite.show.id === id);
   favorites.splice(index, 1);
+  updateLocalStorage();
   const favoritesItems = document.querySelectorAll('.js-favorites-items');
   for (const favoritesItem of favoritesItems) {
     if (id === parseInt(favoritesItem.id)) {
@@ -157,8 +161,6 @@ function handleRemoveFavorite(event) {
     }
   }
 
-  // paintFavorites();
-  updateLocalStorage();
   const showsItems = document.querySelectorAll('.js-shows-items');
   for (const showsItem of showsItems) {
     if (id === parseInt(showsItem.id)) {
