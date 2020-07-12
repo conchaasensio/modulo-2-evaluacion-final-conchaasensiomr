@@ -23,8 +23,10 @@ function getDataFromApi() {
       for (let i = 0; i < data.length; i++) {
         const show = data[i];
         shows.push(show);
-        // paintShows();
       }
+    })
+    .catch((error) => {
+      console.log(error);
     });
 }
 

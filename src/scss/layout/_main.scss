@@ -64,6 +64,10 @@
     margin-right: 8px;
     max-width: 60%;
     font-weight: bold;
+    &::placeholder {
+      color: lightgrey;
+      font-style: italic;
+    }
   }
   &__button {
     padding: 8px;
