@@ -70,7 +70,6 @@ function paintFavorite(favorite, index) {
   article.dataset.index = index;
   article.id = favorite.show.id;
   li.appendChild(article);
-  article.addEventListener('click', handleRemoveFavorite);
   let imageShow = document.createElement('img');
   imageShow.src = imageUrl;
   article.appendChild(imageShow);
@@ -82,6 +81,7 @@ function paintFavorite(favorite, index) {
   removeButton.classList.add('remove__button', 'js-remove-button');
   removeButton.innerHTML = 'X';
   article.appendChild(removeButton);
+  removeButton.addEventListener('click', handleRemoveFavorite);
 
   // let codeHTML = `<article class="main__favorites--item js-favorites-items" data-index="${index}">`;
   // codeHTML += `<img src="${imageUrl}" alt="" />`; //evaluar condición de que si tiene contenido y si es null, ponga la url por defecto (ternario).
