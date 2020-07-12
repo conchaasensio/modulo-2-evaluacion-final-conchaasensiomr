@@ -1,5 +1,7 @@
-.header {
-  display: flex;
-  justify-content: space-evenly;
-  margin-bottom: 3rem;
+.page__header {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-style: italic;
+  color: $color-show-name;
 }
