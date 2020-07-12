@@ -119,6 +119,7 @@ function paintShows() {
 
       article.id = show.show.id;
       li.appendChild(article);
+      article.addEventListener('click', handleSetFavorite);
 
       let imageShow = document.createElement('img');
       imageShow.src = imageUrl;
@@ -129,22 +130,8 @@ function paintShows() {
       showName.appendChild(document.createTextNode(show.show.name));
       article.appendChild(showName);
     }
-
-    // codeHTML += `<article class="main__list--item js-shows-items" data-index="${index}">`;
-    // codeHTML += `<img src="${imageUrl}" alt="" />`; //evaluar condición de que si tiene contenido y si es null, ponga la url por defecto (ternario).
-    // codeHTML += `<p class="main__list--name js-list-name">${show.show.name}</p>`;
-    // codeHTML += `</article>`;
   } else {
     msgNoResults.classList.remove('msg-no-results--hidden');
-  }
-  // const showsItems = document.querySelector('.js-shows-list'); la tengo declarada en la línea 54, porque existe en HTML. So no existiera, tendría que declararla dentro de paintShows.
-  // showsItems.innerHTML = codeHTML;
-  // console.log(showsItems);
-
-  //listen events
-  const showsItems = document.querySelectorAll('.js-shows-items');
-  for (const showsItem of showsItems) {
-    showsItem.addEventListener('click', handleSetFavorite);
   }
 }
 function isFavorite(show) {
