@@ -64,12 +64,12 @@ function paintFavorite(favorite, index) {
     favorite.show.image !== null
       ? favorite.show.image.medium
       : 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
-  let div = document.querySelector('.js-favorites-items');
+  let li = document.querySelector('.js-favorites-items');
   let article = document.createElement('article');
   article.classList.add('main__favorites--item');
   article.dataset.index = index;
   article.id = favorite.show.id;
-  div.appendChild(article);
+  li.appendChild(article);
   article.addEventListener('click', handleRemoveFavorite);
   let imageShow = document.createElement('img');
   imageShow.src = imageUrl;
@@ -78,6 +78,10 @@ function paintFavorite(favorite, index) {
   showName.classList.add('main__list--title', 'js-favorites-name');
   showName.appendChild(document.createTextNode(favorite.show.name));
   article.appendChild(showName);
+  let removeButton = document.createElement('button');
+  removeButton.classList.add('remove__button', 'js-remove-button');
+  removeButton.innerHTML = 'X';
+  article.appendChild(removeButton);
 
   // let codeHTML = `<article class="main__favorites--item js-favorites-items" data-index="${index}">`;
   // codeHTML += `<img src="${imageUrl}" alt="" />`; //evaluar condición de que si tiene contenido y si es null, ponga la url por defecto (ternario).

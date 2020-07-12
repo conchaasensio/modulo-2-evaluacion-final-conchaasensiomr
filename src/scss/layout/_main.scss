@@ -1,39 +1,113 @@
-// .main {
-//   display: flex;
-//   width: 90%;
-//   margin: 0 auto;
-// }
+.page__main {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+}
 
-.main__browser {
+.page__left--section {
   width: 25%;
   padding-right: 15px;
 }
 
-.main__favorites {
+.page__right--section {
   width: 75%;
 }
 
 .main__list {
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-  &--item {
-    border: 1px solid pink;
-    width: 300px;
-    height: 400px;
-    background-color: pink;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+}
+
+.main__list--item {
+  padding: 15px;
+  background-color: $color-backgroung-show;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.25s ease-in-out;
+  max-width: 100%;
+}
+
+.main__list--item img {
+  max-width: 100%;
+}
+
+.main__list--name {
+  color: $color-show-name;
+  font-weight: bold;
+  padding: 8px 0;
+}
+
+.main__list--item:hover {
+  transform: scale(1.05);
 }
 
 .selected {
-  border: 1px solid pink;
-  width: 300px;
-  height: 400px;
-  background-color: violet;
+  background-color: $color-show-name;
 }
 
+.selected .main__list--name {
+  color: $color-backgroung-show;
+}
+
+.search-form {
+  margin-bottom: 15px;
+  &__show {
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: $color-light;
+    padding: 8px;
+    margin-right: 8px;
+    max-width: 60%;
+    font-weight: bold;
+  }
+  &__button {
+    padding: 8px;
+    border: none;
+    color: $color-light;
+    background-color: $color-show-name;
+  }
+}
+
+.main__favorites--title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 15px;
+  text-align: center;
+  color: $color-show-name;
+}
 .main__favorites--list {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.main__list-title {
+  padding: 15px;
+  font-weight: bold;
+  color: $color-backgroung-show;
+  flex: 1;
+  overflow: hidden;
+}
+
+.main__favorites--item img {
+  height: 96%;
+}
+
+.remove__button {
+  border: none;
+  border-radius: 50%;
+  background-color: $color-show-name;
+  color: $color-light;
+  font-weight: bold;
+  font-size: 0.7rem;
+  line-height: 0.7rem;
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  cursor: pointer;
 }
