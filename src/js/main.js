@@ -87,13 +87,14 @@ function paintFavorite(favorite, index) {
 const showsItems = document.querySelector('.js-shows-list');
 const paintShows = () => {
   // let codeHTML = '';
+  let section = document.querySelector('.js-shows-list');
+  section.innerHTML = '';
   for (let index = 0; index < shows.length; index++) {
     const show = shows[index];
     let imageUrl =
       show.show.image !== null
         ? show.show.image.medium
         : 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
-    let section = document.querySelector('.js-shows-list');
 
     let article = document.createElement('article');
     article.classList.add('main__list--item', 'js-shows-items');
