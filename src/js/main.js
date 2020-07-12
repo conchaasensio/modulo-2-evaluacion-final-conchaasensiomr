@@ -119,6 +119,7 @@ function paintFavorite(favorite, index) {
   let removeButton = document.createElement('button');
   removeButton.classList.add('remove__button', 'js-remove-button');
   removeButton.innerHTML = 'X';
+  removeButton.id = favorite.show.id;
   article.appendChild(removeButton);
   removeButton.addEventListener('click', handleRemoveFavorite);
 }
@@ -147,7 +148,14 @@ function handleRemoveFavorite(event) {
   favorites.splice(index, 1);
   paintFavorites();
   updateLocalStorage();
-  paintShows();
+  const showsItems = document.querySelectorAll('.js-shows-items');
+  for (const showsItem of showsItems) {
+    if (id === parseInt(showsItem.id)) {
+      showsItem.classList.remove('selected');
+    }
+  }
+
+  // paintShows();
 }
 
 // events
@@ -174,7 +182,6 @@ function resetFavorites() {
   for (const showsItem of showsItems) {
     showsItem.classList.remove('selected');
   }
-  // paintShows();
 }
 
 buttonReset.addEventListener('click', resetFavorites);
