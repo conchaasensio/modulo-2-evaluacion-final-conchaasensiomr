@@ -1,8 +1,37 @@
-![Adalab](https://beta.adalab.es/resources/images/adalab-logo-155x61-bg-white.png)
 
-# Adalab web starter kit
+# Ejercicio de evaluación final del Módulo 2 de Adalab: Buscador de series.
 
-Ahoy! Este es nuestro Starter Kit creado en **node y gulp**. ¿Y qué es un Starter kit? Pues es una **plantilla de proyecto con funcionalidades preinstaladas y preconfiguradas**.
+El ejercicio consiste en desarrollar una aplicación web de búsqueda de series de TV, que nos permite des/marcar las series como favoritas y guardarlas en local storage.
+
+## Hitos del ejercicio
+
+1. **Estructura básica**   
+   La aplicación de búsqueda de series consta de dos partes:
+   1. Un campo de texto y un botón para buscar series por su título.
+   2. Un listado de resultados de búsqueda donde aparece el cartel de la serie y el título.   
+2. **Búsqueda**   
+   - Al hacer click sobre el botón de **Buscar**, la aplicación debe conectarse al [API abierto de TVMaze para búsqueda de series](http://www.tvmaze.com/api#show-search).
+   - Para construir la URL de búsqueda, hay que recoger el texto que ha introducido la ususaria en el campo de búsqueda.
+   - Por cada show contenido en el resultado de la búsqueda hay que pintar una tarjeta donde mostramos una imagen de la serie y el título.
+   - Algunas de las series que devuelve el API no tienen imagen. EN ese caso, hay que mostrar una imagen de relleno.
+   - Para pintar la información en la página se puede elegir entre hacerlo de forma básica con innerHTML o manipulando de forma avanzada el DOM.
+3. **Favoritos**
+   Una vez aparecen los resultados de búsqueda, la ususaria puede indicar cuáles son sus series favoritas. para ello, al hacer click sobre una serie, debe pasar lo siguiente:
+   - El color de fondo y el de fuente se intercambian, indicando que es una serie favorita.
+   - Hay que mostrar un listado en la parte izquerda de la pantalla, debajo del formulario de búsqueda, con las series favoritas.
+   - Las series favoritas deben seguir apareciendo a la izquerda aunque la usuaria realice otra búsqueda.
+4. **Almacenamiento local**
+   Hay que almacenar el listado de favoritos en el localStorage. De esta forma, al recargar la página, el listado de favoritos debe mostrarse.
+5. **BONUS: Borrar favoritos**
+   Como bonus, se propone la opción de borrar favoritos. Al hacer click sobre el icono de una "X" al lado de cada favorito, hay que borrar el favorito clickado de la lista y del local storage.
+   Para terminar de rematar nuestra App de series, nos gustaría poder añadir/quitar como favorito al hacer click sobre una serie del lado de la derecha. Si relaizamos una nueva búsqueda y sale una serie que ya es favorita, aparezca ya resaltada en los resultados de búsqueda.
+   Por último, sería fantástico si al final de la lista de favoritos hubiera un botón para borrar todos los favoritos a la vez.
+6. **BONUS: Afinar la maquetación**
+   Una vez terminada la parte de interacción, nos podemos centrar en la parte de maquetación.
+
+## Adalab Starter Kit
+
+Este ejercicio lo he realizado utilizando el Starter Kit creado en **node y gulp**. ¿Y qué es un Starter kit? Pues es una **plantilla de proyecto con funcionalidades preinstaladas y preconfiguradas**.
 
 Este Kit incluye un motor de plantillas HTML, el preprocesador SASS y un servidor local y muchas cosas más. El Kit nos ayuda a trabajar más cómodamente, nos automatiza tareas.
 
@@ -113,12 +142,4 @@ src
 
 > **NOTA:** Los partials de HTML y SASS del proyecto son orientativos. Te recomendamos usar los que quieras, y borrar los que no uses.
 
-## Vídeotutoriales del Starter kit
 
-- [Qué es, trabajar con la versión de desarrollo y rutas relativas](https://www.youtube.com/watch?v=XwvhXvBijos)
-- [Migración de un proyecto, trabajar con la versión de producción y GitHub Pages](https://www.youtube.com/watch?v=qqGClcgt9Uc)
-- [Motor de plantillas](https://www.youtube.com/watch?v=4GwXOJ045Zg)
-
-## Falta algo?
-
-Echas de menos que el kit haga algo en concreto? Pidelo sin problema a través de las issues o si te animas a mejorarlo mándanos un PR :)
