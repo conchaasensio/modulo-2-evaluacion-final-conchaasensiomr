@@ -70,6 +70,7 @@
     border: none;
     color: $color-light;
     background-color: $color-show-name;
+    border-radius: 5px;
   }
 }
 
@@ -106,6 +107,7 @@
 
 .main__favorites--item img {
   width: 40%;
+  border-radius: 10%;
 }
 
 .remove__button {
@@ -127,6 +129,7 @@
   border: none;
   color: $color-light;
   background-color: $color-show-name;
+  border-radius: 5px;
 }
 
 .msg-no-results {
@@ -136,6 +139,7 @@
   align-items: center;
   &__text {
     font-size: 1.5rem;
+    color: $color-show-name;
   }
   &--hidden {
     display: none;
