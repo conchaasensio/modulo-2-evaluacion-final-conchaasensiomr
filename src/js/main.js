@@ -10,6 +10,7 @@ let favorites = [];
 
 // Función manejadora del evento que escucha el click al buscar y evento que se produce al hacer click.
 function handleshowsSearchClick() {
+  //De esta forma queda más claro que leo los datos y una vez los he leído, pinto.
   getDataFromApi().then(() => paintShows()); //Aquí estoy ejecutando la función para obterner los datos de la API y una vez tenga la respuesta, me pinte los objetos contenidos en el array shows.
 } //Puedo encadenar el .then al getDataFromApi porque en esta función devuelve la promesa del fetch con el return.
 showsSearchButton.addEventListener('click', handleshowsSearchClick); //Evento que ejecuta la función manejadora.
@@ -92,7 +93,7 @@ function isFavorite(show) {
   //Le paso como parámetro show.
   return (
     favorites.find((favorite) => favorite.show.id === show.show.id) !==
-    undefined
+    undefined //Busca en favoritos si hay algún favorito que tenga el mismo id del show que le estamos pasando.
   ); //Le pido que busque si la serie está en favoritos y me devuelva si es true o false.
 }
 
