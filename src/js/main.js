@@ -27,7 +27,7 @@ function getDataFromApi() {
         const show = data[i]; //Variable en la que guardo la información referente a cada elemento del array.
         shows.push(show); //Con push, incluyo cada uno de los elementos al array.
       }
-    }) //.then(() => paintShows()) Esto sería si no lo tuviera en handleShowClick(). También podría poner el paintshows fuera del for.
+    }) //.then(() => paintShows()) Esto sería si no lo tuviera en handleShowClick(). También podría poner el paintshows fuera del for (sin el .then).
     .catch((error) => {
       //Para localizar errores en la petición al servidor.
       console.log(error);
@@ -37,7 +37,7 @@ function getDataFromApi() {
 // ***** CATÁLOGO DE SERIES *****
 
 //Pintamos el catálogo
-const showsItems = document.querySelector('.js-shows-list'); //Ul que contiene los cada uno de los lis con los artículos en los que se pintan las series que aparecen tras la búsqueda.
+const showsItems = document.querySelector('.js-shows-list'); //Ul que contiene cada uno de los lis con los artículos en los que se pintan las series que aparecen tras la búsqueda.
 const msgNoResults = document.querySelector('.msg-no-results'); //Contenido del mensaje que aparece cuando no se encuentran resultados.
 function paintShows() {
   //Función que ejecuto para pintar los resultados de la búsqueda.
