@@ -17,7 +17,7 @@ showsSearchButton.addEventListener('click', handleshowsSearchClick);
 function getDataFromApi() {
   event.preventDefault();
   shows = [];
-  return fetch(`http://api.tvmaze.com/search/shows?q=${showNameInput.value}`)
+  return fetch(`https://api.tvmaze.com/search/shows?q=${showNameInput.value}`)
     .then((response) => response.json())
     .then((data) => {
       for (let i = 0; i < data.length; i++) {
